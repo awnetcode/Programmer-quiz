@@ -1,4 +1,5 @@
 import Questions from "./components/Questions";
+import './App.css';
 
 function App() {
 
