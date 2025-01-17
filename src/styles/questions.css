@@ -1,11 +1,7 @@
-.table-header{
-    font-size: 1.5rem;
-}
-
-.table-header td{
-    padding: 1rem;
-}
-
-.table-body td{
-    padding: .3rem;
+.quiz-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
 }

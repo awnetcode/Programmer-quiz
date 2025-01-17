@@ -1,0 +1,8 @@
+.answer-button{
+    background-color: #ffa500;
+    padding: .5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
