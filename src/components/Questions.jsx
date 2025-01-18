@@ -11,6 +11,7 @@ const Questions = () => {
     const [questionCount, setQuestionCount] = useState(0);
     const [questions, setQuestions] = useState([]);
     const [categornies, setcategories] = useState([]);
+    const [answers, setAnswers] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,10 +32,15 @@ const Questions = () => {
                 const result = await response.json();
 
                 const fetchedQuestions = result.map(value => value.question);
-                setQuestions(fetchedQuestions);
+                setQuestions(fetchedQuestions); // tablica stringów
 
-                const fetchedCategories = result.map(value => value.category)
-                setcategories(fetchedCategories)
+                const fetchedCategories = result.map(value => value.category);
+                setcategories(fetchedCategories); //tablica stringów
+
+                const fetchedAnswers = result.map(value => value.answers);
+                setAnswers(fetchedAnswers); //tablica obiektów
+
+                console.log(fetchedAnswers);
 
             } catch (error) {
                 setError(error.message); // Obsłuż błąd
@@ -58,7 +64,7 @@ const Questions = () => {
         <QuestionContainer 
         question={error ? `Error: ${error}` : questions[questionCount] || "Loading..."}
         />
-        <AnswersContainer/>
+        <AnswersContainer answers={answers} questionCount={questionCount}/>
         <AnswerButton nextQuestion={nextQuestion} questionCount={questionCount}/>
         </div>
         </>
