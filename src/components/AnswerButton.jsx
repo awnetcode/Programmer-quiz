@@ -1,10 +1,13 @@
 import '../styles/answerButton.css';
 
-// eslint-disable-next-line react/prop-types
-const AnswerButton = ({nextQuestion, questionCount}) => {
+import { useContext } from 'react';
+import { QuizContext } from './QuizProvider';
+
+const AnswerButton = () => {
+    const { questionCount, nextQuestion } = useContext(QuizContext);
     return(
         <>
-        <button className="answer-button" onClick={() => nextQuestion()}>Next ({questionCount+1} / 20)</button>
+        <button className="answer-button" onClick={() => nextQuestion()}>Next ({questionCount} / 20)</button>
         </>
     )
 }

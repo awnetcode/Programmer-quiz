@@ -1,13 +1,23 @@
-import Questions from "./components/Questions";
+
 import SelectCategory from "./components/SelectCategory";
+import QuestionContainer from "./components/QuestionContainer";
+import AnswersContainer from "./components/AnswersContainer";
+import AnswerButton from "./components/AnswerButton"
 import './App.css';
 
-function App() {
+import { QiuzProvider } from "./components/QuizProvider";
 
+function App() {
 return(
   <>
-  <SelectCategory />
-  <Questions />
+  <div className="quiz-container">
+    <QiuzProvider>
+         <SelectCategory />
+         <QuestionContainer />
+         <AnswersContainer />
+         <AnswerButton />
+    </QiuzProvider>
+  </div>
   </>
 )
 }

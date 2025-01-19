@@ -13,6 +13,10 @@ const [questions, setQuestions] = useState([]);
 const [categornies, setCategories] = useState([]);
 const [answers, setAnswers] = useState([]);
 
+const nextQuestion = () => {
+    setQuestionCount(questionCount + 1);
+}
+
 
 const newQuiz = () =>{
     const fetchData = async () => {
@@ -41,11 +45,13 @@ const newQuiz = () =>{
             const fetchedAnswers = result.map(value => value.answers);
             setAnswers(fetchedAnswers); //tablica obiektów
 
+            
+
             } catch(error) {
             setError(error.message);
             }
     }
-
+    setQuestionCount(1);
     fetchData();
 }
 
@@ -61,11 +67,10 @@ useEffect(() =>{
             questionCount, setQuestionCount,
             questions, setQuestions,
             answers, setAnswers,
-            categornies, setCategories
-
+            categornies, setCategories,
+            nextQuestion,
         }}>
             {children}
         </QuizContext.Provider>
-
     )
 }

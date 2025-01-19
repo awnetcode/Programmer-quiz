@@ -1,12 +1,17 @@
 import '../styles/questionContainer.css';
 
-// eslint-disable-next-line react/prop-types
-const QuestionContainer = ({question}) => {
+import { useContext } from 'react';
+import { QuizContext } from './QuizProvider';
 
+const QuestionContainer = () => {
+
+    const { category, questionCount, questions } = useContext(QuizContext);
+    
     return(
         <>
         <div className="question-area">
-            <p className="question">{question}</p>
+            <h1>Category: {category}</h1>
+            <p className="question">{questions[questionCount]}</p>
         </div>
         </>
     )
