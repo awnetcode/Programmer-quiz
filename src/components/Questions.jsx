@@ -40,7 +40,7 @@ const Questions = () => {
                 const fetchedAnswers = result.map(value => value.answers);
                 setAnswers(fetchedAnswers); //tablica obiektów
 
-                console.log(fetchedAnswers);
+               // console.log(fetchedAnswers);
 
             } catch (error) {
                 setError(error.message); // Obsłuż błąd
@@ -53,7 +53,7 @@ const Questions = () => {
 
     const nextQuestion = () => {
         if (questionCount < questions.length - 1) {
-            setQuestionCount(questionCount + 1);
+            setQuestionCount(questionCount);
         }
     };
 
