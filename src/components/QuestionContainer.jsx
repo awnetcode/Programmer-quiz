@@ -5,13 +5,12 @@ import { QuizContext } from './QuizProvider';
 
 const QuestionContainer = () => {
 
-    const { category, questionCount, questions } = useContext(QuizContext);
+    const { questionCount, questions, loading } = useContext(QuizContext);
     
     return(
         <>
         <div className="question-area">
-            <h1>Category: {category}</h1>
-            <p className="question">{questions[questionCount]}</p>
+            <p className="question">{ loading == true ? 'Data loading...' : questions[questionCount]}</p>
         </div>
         </>
     )

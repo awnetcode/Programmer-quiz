@@ -1,8 +1,7 @@
-
-import SelectCategory from "./components/SelectCategory";
 import QuestionContainer from "./components/QuestionContainer";
 import AnswersContainer from "./components/AnswersContainer";
-import AnswerButton from "./components/AnswerButton"
+import AnswerButton from "./components/AnswerButton";
+import QuizHeader from "./components/QuizHeader";
 import './App.css';
 
 import { QiuzProvider } from "./components/QuizProvider";
@@ -12,9 +11,9 @@ return(
   <>
   <div className="quiz-container">
     <QiuzProvider>
-         <SelectCategory />
+         <QuizHeader/>
          <QuestionContainer />
-         <AnswersContainer />
+         <AnswersContainer /> 
          <AnswerButton />
     </QiuzProvider>
   </div>

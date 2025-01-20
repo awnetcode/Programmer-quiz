@@ -5,16 +5,28 @@ import { QuizContext } from './QuizProvider';
 
 const AnswersContainer = () => {
 
-    const { questionCount, answers } = useContext(QuizContext);
+    const { questionCount, answers, loading } = useContext(QuizContext);
 
     return(
         <>
         <div className="answers-container">
             <ul className='answers-list'>
-                <li><input className='answer-checkbox' type="checkbox" ></input>{answers[questionCount].answer_a}</li>
-                <li><input className='answer-checkbox' type="checkbox" ></input>{answers[questionCount].answer_b}</li>
-                <li><input className='answer-checkbox' type="checkbox" ></input>{answers[questionCount].answer_c}</li>
-                <li><input className='answer-checkbox' type="checkbox" ></input>{answers[questionCount].answer_d}</li>
+                <li>
+                    <input className='answer-checkbox' type="checkbox" />
+                    {loading == true ? 'Wait...' : answers[questionCount].answer_a}
+                </li>
+                <li>
+                    <input className='answer-checkbox' type="checkbox" />
+                    {loading == true ? 'Wait...' : answers[questionCount].answer_b}
+                </li>
+                <li>
+                    <input className='answer-checkbox' type="checkbox" />
+                    {loading == true ? 'Wait...' : answers[questionCount].answer_c}
+                </li>
+                <li>
+                    <input className='answer-checkbox' type="checkbox" />
+                    {loading == true ? 'Wait...' : answers[questionCount].answer_d}
+                </li>
             </ul>
             
         </div>

@@ -7,7 +7,9 @@ const AnswerButton = () => {
     const { questionCount, nextQuestion } = useContext(QuizContext);
     return(
         <>
-        <button className="answer-button" onClick={() => nextQuestion()}>Next ({questionCount} / 20)</button>
+        <button className="answer-button" onClick={() => nextQuestion()}>
+            {questionCount < 19 ? `Next (${questionCount + 1} / 20)` : 'Well Done!'}
+            </button>
         </>
     )
 }

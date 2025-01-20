@@ -4,4 +4,5 @@
 
 .answer-checkbox{
     margin: .5rem;
+    cursor: pointer;
 }

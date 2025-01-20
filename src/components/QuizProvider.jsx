@@ -6,23 +6,32 @@ export const QuizContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const QiuzProvider = ({ children }) => {
 
-const [category, setCategory] = useState('NodeJs');
+const [category, setCategory] = useState('React');
 const [error, setError] = useState(null); // Obsługa błędów
 const [questionCount, setQuestionCount] = useState(0);
 const [questions, setQuestions] = useState([]);
-const [categornies, setCategories] = useState([]);
-const [answers, setAnswers] = useState([]);
+const [categories, setCategories] = useState([]);
+const [answers, setAnswers] = useState([{},{},{},{}]);
+const [loading, setLoading] = useState(false);
 
 const nextQuestion = () => {
-    setQuestionCount(questionCount + 1);
+    if (questionCount < questions.length-1){
+        setQuestionCount(questionCount + 1);
+    }
+}
+
+const changeCategory = (e) =>{
+    const currentCategory = e.target.value;
+    setCategory(currentCategory);
 }
 
 
 const newQuiz = () =>{
     const fetchData = async () => {
+        setLoading(true);
         try {
             const response = await fetch(
-                "https://quizapi.io/api/v1/questions?category=NodeJs",
+                `https://quizapi.io/api/v1/questions?category=${category}`,
                 {
                     headers: {
                         "X-Api-Key": "hqB1z4JM9jKdxXjM4aN32qnV7NXAmNXCOzY0aQN1", // Twój klucz API
@@ -49,16 +58,18 @@ const newQuiz = () =>{
 
             } catch(error) {
             setError(error.message);
+            } finally {
+                setLoading(false)
             }
-    }
-    setQuestionCount(1);
+    };
     fetchData();
 }
 
 
 useEffect(() =>{
     newQuiz();
-},[]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[category]);
 
     return(
         <QuizContext.Provider value={{
@@ -67,8 +78,10 @@ useEffect(() =>{
             questionCount, setQuestionCount,
             questions, setQuestions,
             answers, setAnswers,
-            categornies, setCategories,
+            categories, setCategories,
+            loading,
             nextQuestion,
+            changeCategory
         }}>
             {children}
         </QuizContext.Provider>
