@@ -28,8 +28,20 @@ const changeCategory = (e) =>{
     setCategory(currentCategory);
 }
 
-const checkAnswer = () => {
+const checkAnswer = (e, answerKey) => {
+    const keys = Object.keys(correctAnswers[questionCount]);
+    const values = Object.values(correctAnswers[questionCount]);
+    const markAnswer = 'answer_'+answerKey+'_correct';
+    //console.log(markAnswer);
+    //console.log(keys);
+    //console.log(values);
 
+    console.log(correctAnswers[questionCount].markAnswer);
+
+
+    if (correctAnswers[questionCount].markAnswer == false) {
+        console.log("trafiony");
+    }
 }
 
 const scoreCount = () =>{
@@ -72,8 +84,8 @@ const newQuiz = () =>{
             setCorrectAnswers(fetchedCorrectAnswers);
 
 
-            console.log(result);
-            console.log(questionCount);
+            //console.log(result);
+            //console.log(questionCount);
             console.log(correctAnswers[questionCount].answer_a_correct);
             
             } catch(error) {
