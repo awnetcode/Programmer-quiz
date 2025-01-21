@@ -9,9 +9,12 @@ export const QiuzProvider = ({ children }) => {
 const [category, setCategory] = useState('React');
 const [error, setError] = useState(null); // Obsługa błędów
 const [questionCount, setQuestionCount] = useState(0);
+const [score, setScore] = useState(0);
 const [questions, setQuestions] = useState([]);
 const [categories, setCategories] = useState([]);
 const [answers, setAnswers] = useState([{},{},{},{}]);
+const [correctAnswers, setCorrectAnswers] = useState([{},{},{},{}]);
+const [difficulty, setDifficulty] = useState('');
 const [loading, setLoading] = useState(false);
 
 const nextQuestion = () => {
@@ -23,6 +26,14 @@ const nextQuestion = () => {
 const changeCategory = (e) =>{
     const currentCategory = e.target.value;
     setCategory(currentCategory);
+}
+
+const checkAnswer = () => {
+
+}
+
+const scoreCount = () =>{
+    setScore(score + 10);
 }
 
 
@@ -54,8 +65,17 @@ const newQuiz = () =>{
             const fetchedAnswers = result.map(value => value.answers);
             setAnswers(fetchedAnswers); //tablica obiektów
 
-            
+            const fetchedDifficulty = result.map(value => value.difficulty);
+            setDifficulty(fetchedDifficulty); //tablica stringów
 
+            const fetchedCorrectAnswers = result.map(value => value.correct_answers);
+            setCorrectAnswers(fetchedCorrectAnswers);
+
+
+            console.log(result);
+            console.log(questionCount);
+            console.log(correctAnswers[questionCount].answer_a_correct);
+            
             } catch(error) {
             setError(error.message);
             } finally {
@@ -79,9 +99,12 @@ useEffect(() =>{
             questions, setQuestions,
             answers, setAnswers,
             categories, setCategories,
-            loading,
+            loading, difficulty,
+            score,
             nextQuestion,
-            changeCategory
+            changeCategory,
+            checkAnswer,
+            scoreCount
         }}>
             {children}
         </QuizContext.Provider>
