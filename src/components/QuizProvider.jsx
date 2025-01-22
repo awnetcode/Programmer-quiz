@@ -29,18 +29,28 @@ const changeCategory = (e) =>{
 }
 
 const checkAnswer = (e, answerKey) => {
-    const keys = Object.keys(correctAnswers[questionCount]);
     const values = Object.values(correctAnswers[questionCount]);
-    const markAnswer = 'answer_'+answerKey+'_correct';
-    //console.log(markAnswer);
-    //console.log(keys);
-    //console.log(values);
 
-    console.log(correctAnswers[questionCount].markAnswer);
+    const markAnswer = `answer_${answerKey}_correct`;
+    const isCorrect = correctAnswers[questionCount][markAnswer];
+
+    console.log(values);
+
+/* Na przyszłość: Jeśli użyjesz kropkowej notacji (correctAnswers[questionCount].markAnswer), JavaScript spróbuje znaleźć właściwość o statycznej nazwie markAnswer, która nie istnieje, co prowadzi do błędu.
+Notacja nawiasów kwadratowych: 
+const obj = { name: "Alice" };
+const key = "name";
+console.log(obj[key]);
+Notacja kropkowa:
+console.log(obj.name);
+ */
+    console.log(isCorrect);
 
 
-    if (correctAnswers[questionCount].markAnswer == false) {
+    if (isCorrect == true) {
         console.log("trafiony");
+    }else{
+        console.log("pudło")
     }
 }
 
@@ -86,7 +96,7 @@ const newQuiz = () =>{
 
             //console.log(result);
             //console.log(questionCount);
-            console.log(correctAnswers[questionCount].answer_a_correct);
+            //console.log(correctAnswers[questionCount].answer_a_correct);
             
             } catch(error) {
             setError(error.message);
