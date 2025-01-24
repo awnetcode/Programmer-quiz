@@ -15,28 +15,52 @@ const AnswersContainer = () => {
                     <input 
                     className='answer-checkbox' 
                     type="checkbox" 
-                    onChange={(e) => checkAnswer(e, 'a')}/>
+                    onClick={(e) => {
+                        if (e.target.checked) {
+                            checkAnswer(e, 'a');
+                        }
+                    }}
+                    checked={false}
+                    />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_a}
                 </li>
                 <li>
                     <input 
                     className='answer-checkbox' 
-                    type="checkbox" 
-                    onChange={(e) => checkAnswer(e, 'b')}/>
+                    type="checkbox"
+                    onClick={(e) => {
+                        if (e.target.checked) {
+                            checkAnswer(e, 'b');
+                        }
+                    }} 
+                    checked={false}                                      
+                    />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_b}
                 </li>
                 <li>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox" 
-                    onChange={(e) => checkAnswer(e, 'c')}/>
+                    onClick={(e) => {
+                        if (e.target.checked) {
+                            checkAnswer(e, 'c');
+                        }
+                    }}
+                    checked={false}                                       
+                    />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_c}
                 </li>
                 <li>
                     <input 
                     className='answer-checkbox' 
-                    type="checkbox" 
-                    onChange={(e) => checkAnswer(e, 'd')}/>
+                    type="checkbox"
+                    onClick={(e) => {
+                        if (e.target.checked) {
+                            checkAnswer(e, 'd');
+                        }
+                    }}
+                    checked={false}                                       
+                    />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_d}
                 </li>
             </ul>

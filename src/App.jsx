@@ -2,6 +2,7 @@ import QuestionContainer from "./components/QuestionContainer";
 import AnswersContainer from "./components/AnswersContainer";
 import AnswerButton from "./components/AnswerButton";
 import QuizHeader from "./components/QuizHeader";
+import QuizFooter from "./components/Quiz-footer";
 import './App.css';
 
 import { QiuzProvider } from "./components/QuizProvider";
@@ -15,6 +16,7 @@ return(
          <QuestionContainer />
          <AnswersContainer /> 
          <AnswerButton />
+         <QuizFooter />
     </QiuzProvider>
   </div>
   </>

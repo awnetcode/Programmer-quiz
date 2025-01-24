@@ -16,6 +16,7 @@ const [answers, setAnswers] = useState([{},{},{},{}]);
 const [correctAnswers, setCorrectAnswers] = useState([{},{},{},{}]);
 const [difficulty, setDifficulty] = useState('');
 const [loading, setLoading] = useState(false);
+const [markedAnswer, setMarkedAnswer] = useState(false);
 
 const nextQuestion = () => {
     if (questionCount < questions.length-1){
@@ -31,8 +32,10 @@ const changeCategory = (e) =>{
 const checkAnswer = (e, answerKey) => {
     const values = Object.values(correctAnswers[questionCount]);
 
-    const markAnswer = `answer_${answerKey}_correct`;
+    const markAnswer = `answer_${answerKey}_correct`;//klucz obiektu
     const isCorrect = correctAnswers[questionCount][markAnswer];
+
+    setMarkedAnswer(isCorrect);
 
     console.log(values);
 
@@ -44,13 +47,15 @@ console.log(obj[key]);
 Notacja kropkowa:
 console.log(obj.name);
  */
-    console.log(isCorrect);
 
 
-    if (isCorrect == true) {
-        console.log("trafiony");
+    if (isCorrect === "true") {
+        setMarkedAnswer(true);
+        scoreCount();
+        setQuestionCount(questionCount +1)
     }else{
-        console.log("pudło")
+        setMarkedAnswer(false);
+        setQuestionCount(questionCount +1)
     }
 }
 
@@ -122,7 +127,7 @@ useEffect(() =>{
             answers, setAnswers,
             categories, setCategories,
             loading, difficulty,
-            score,
+            score, markedAnswer,
             nextQuestion,
             changeCategory,
             checkAnswer,
