@@ -1,0 +1,19 @@
+.cheater-button{
+    background-color: #23d01a;
+    padding: .5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.cheater-mode-on{
+    background: #f30606;
+    padding: .5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

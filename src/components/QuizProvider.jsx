@@ -4,7 +4,7 @@ import { createContext, useState, useEffect } from 'react';
 export const QuizContext = createContext();
 
 // eslint-disable-next-line react/prop-types
-export const QiuzProvider = ({ children }) => {
+export const QuizProvider = ({ children }) => {
 
 const [category, setCategory] = useState('React');
 const [error, setError] = useState(null); // Obsługa błędów
@@ -17,6 +17,7 @@ const [correctAnswers, setCorrectAnswers] = useState([{},{},{},{}]);
 const [difficulty, setDifficulty] = useState('');
 const [loading, setLoading] = useState(false);
 const [markedAnswer, setMarkedAnswer] = useState(false);
+const [cheaterModeToggle, setCheaterModeToggle] = useState(false);
 
 const nextQuestion = () => {
     if (questionCount < questions.length-1){
@@ -38,6 +39,7 @@ const checkAnswer = (e, answerKey) => {
     setMarkedAnswer(isCorrect);
 
     console.log(values);
+    console.log(answers[questionCount]);
 
 /* Na przyszłość: Jeśli użyjesz kropkowej notacji (correctAnswers[questionCount].markAnswer), JavaScript spróbuje znaleźć właściwość o statycznej nazwie markAnswer, która nie istnieje, co prowadzi do błędu.
 Notacja nawiasów kwadratowych: 
@@ -63,6 +65,9 @@ const scoreCount = () =>{
     setScore(score + 10);
 }
 
+const cheaterMode = () => {
+    setCheaterModeToggle(!cheaterModeToggle);
+}
 
 const newQuiz = () =>{
     const fetchData = async () => {
@@ -97,11 +102,6 @@ const newQuiz = () =>{
 
             const fetchedCorrectAnswers = result.map(value => value.correct_answers);
             setCorrectAnswers(fetchedCorrectAnswers);
-
-
-            //console.log(result);
-            //console.log(questionCount);
-            //console.log(correctAnswers[questionCount].answer_a_correct);
             
             } catch(error) {
             setError(error.message);
@@ -128,10 +128,12 @@ useEffect(() =>{
             categories, setCategories,
             loading, difficulty,
             score, markedAnswer,
+            cheaterModeToggle, setCheaterModeToggle,
             nextQuestion,
             changeCategory,
             checkAnswer,
-            scoreCount
+            scoreCount,
+            cheaterMode
         }}>
             {children}
         </QuizContext.Provider>
