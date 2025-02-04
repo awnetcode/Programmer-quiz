@@ -18,11 +18,12 @@ const [difficulty, setDifficulty] = useState('');
 const [loading, setLoading] = useState(false);
 const [markedAnswer, setMarkedAnswer] = useState(false);
 const [cheaterModeToggle, setCheaterModeToggle] = useState(false);
-const [cheatMode, setCheatMode] = useState(false); 
+const [correctLetter, setCorrectLetter] = useState('');
 
 const nextQuestion = () => {
     if (questionCount < questions.length-1){
         setQuestionCount(questionCount + 1);
+        setCorrectLetter('');
     }
 }
 
@@ -32,15 +33,10 @@ const changeCategory = (e) =>{
 }
 
 const checkAnswer = (e, answerKey) => {
-    const values = Object.values(correctAnswers[questionCount]);
-
     const markAnswer = `answer_${answerKey}_correct`;//klucz obiektu
     const isCorrect = correctAnswers[questionCount][markAnswer];
 
     setMarkedAnswer(isCorrect);
-
-    console.log(values);
-    console.log(answers[questionCount]);
 
 /* Na przyszłość: Jeśli użyjesz kropkowej notacji (correctAnswers[questionCount].markAnswer), JavaScript spróbuje znaleźć właściwość o statycznej nazwie markAnswer, która nie istnieje, co prowadzi do błędu.
 Notacja nawiasów kwadratowych: 
@@ -55,10 +51,8 @@ console.log(obj.name);
     if (isCorrect === "true") {
         setMarkedAnswer(true);
         scoreCount();
-        setQuestionCount(questionCount +1);
     }else{
         setMarkedAnswer(false);
-        setQuestionCount(questionCount +1)
     }
 }
 
@@ -68,16 +62,23 @@ const scoreCount = () =>{
 
 const cheaterMode = () => {
     setCheaterModeToggle(!cheaterModeToggle);
+    setCorrectLetter('');
     markCorrect();
 }
 
 const markCorrect = () =>{
     
+    //klucz poprawnej odpowiedzi
     const correctKey = Object.keys(correctAnswers[questionCount]).find(key => correctAnswers[questionCount][key] === "true");
+    if (!correctKey) return;
 
-    if (correctKey){
-        setCheatMode(!cheatMode);
-    }
+    console.log("Poprawny klucz:", correctKey);
+
+    // Zamiana nazwy klucza poprawnej odpowiedzi (np. "answer_b_correct" → "b")
+    const answerLetter = correctKey.replace("answer_", "").replace("_correct", "");
+
+    setCorrectLetter(answerLetter);
+
 
 }
 
@@ -140,7 +141,7 @@ useEffect(() =>{
             categories, setCategories,
             loading, difficulty,
             score, markedAnswer,
-            cheatMode,
+            correctLetter,
             cheaterModeToggle, setCheaterModeToggle,
             nextQuestion,
             changeCategory,

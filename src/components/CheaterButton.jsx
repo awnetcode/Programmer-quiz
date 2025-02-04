@@ -10,7 +10,7 @@ const CheaterButton = () => {
     return(
         <>
         <button 
-        className={cheaterModeToggle == false ? 'cheater-button' : 'cheater-button cheater-mode-on'}
+        className={cheaterModeToggle == true ? 'cheater-button cheater-mode-on' : 'cheater-button' }
         onClick={() => cheaterMode()}
         >
             { cheaterModeToggle == false ? 'Cheater Mode' : 'Turn Off'}

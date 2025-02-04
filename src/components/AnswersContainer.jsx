@@ -5,13 +5,13 @@ import { QuizContext } from './QuizProvider';
 
 const AnswersContainer = () => {
 
-    const { questionCount, answers, loading, checkAnswer, cheatMode } = useContext(QuizContext);
+    const { questionCount, answers, loading, checkAnswer, correctLetter } = useContext(QuizContext);
 
     return(
         <>
         <div className="answers-container">
             <ul className='answers-list'>
-                <li className={cheatMode == true ? 'bordered-answer' : ''}>
+                <li className={ correctLetter === 'a' ? 'bordered-answer' : ''}>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox" 
@@ -20,11 +20,10 @@ const AnswersContainer = () => {
                             checkAnswer(e, 'a');
                         }
                     }}
-                    checked={false}
                     />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_a}
                 </li>
-                <li className={cheatMode == true ? 'bordered-answer' : ''}>
+                <li className={ correctLetter === 'b' ? 'bordered-answer' : ''}>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox"
@@ -32,12 +31,11 @@ const AnswersContainer = () => {
                         if (e.target.checked) {
                             checkAnswer(e, 'b');
                         }
-                    }} 
-                    checked={false}                                      
+                    }}                                    
                     />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_b}
                 </li>
-                <li className={cheatMode == true ? 'bordered-answer' : ''}>
+                <li className={ correctLetter === 'c' ? 'bordered-answer' : ''}>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox" 
@@ -45,12 +43,11 @@ const AnswersContainer = () => {
                         if (e.target.checked) {
                             checkAnswer(e, 'c');
                         }
-                    }}
-                    checked={false}                                       
+                    }}                                    
                     />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_c}
                 </li>
-                <li className={cheatMode == true ? 'bordered-answer' : ''}>
+                <li className={ correctLetter === 'd' ? 'bordered-answer' : ''}>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox"
@@ -58,8 +55,7 @@ const AnswersContainer = () => {
                         if (e.target.checked) {
                             checkAnswer(e, 'd');
                         }
-                    }}
-                    checked={false}                                       
+                    }}                                    
                     />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_d}
                 </li>
