@@ -5,13 +5,13 @@ import { QuizContext } from './QuizProvider';
 
 const AnswersContainer = () => {
 
-    const { questionCount, answers, loading, checkAnswer } = useContext(QuizContext);
+    const { questionCount, answers, loading, checkAnswer, cheatMode } = useContext(QuizContext);
 
     return(
         <>
         <div className="answers-container">
             <ul className='answers-list'>
-                <li>
+                <li className={cheatMode == true ? 'bordered-answer' : ''}>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox" 
@@ -24,7 +24,7 @@ const AnswersContainer = () => {
                     />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_a}
                 </li>
-                <li>
+                <li className={cheatMode == true ? 'bordered-answer' : ''}>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox"
@@ -37,7 +37,7 @@ const AnswersContainer = () => {
                     />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_b}
                 </li>
-                <li>
+                <li className={cheatMode == true ? 'bordered-answer' : ''}>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox" 
@@ -50,7 +50,7 @@ const AnswersContainer = () => {
                     />
                     {loading == true ? 'Wait...' : answers[questionCount].answer_c}
                 </li>
-                <li>
+                <li className={cheatMode == true ? 'bordered-answer' : ''}>
                     <input 
                     className='answer-checkbox' 
                     type="checkbox"

@@ -2,6 +2,10 @@
     list-style-type: none;
 }
 
+.bordered-answer{
+    border: 2px solid white;
+}
+
 .answer-checkbox{
     margin: .5rem;
     cursor: pointer;

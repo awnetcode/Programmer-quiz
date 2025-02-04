@@ -18,6 +18,7 @@ const [difficulty, setDifficulty] = useState('');
 const [loading, setLoading] = useState(false);
 const [markedAnswer, setMarkedAnswer] = useState(false);
 const [cheaterModeToggle, setCheaterModeToggle] = useState(false);
+const [cheatMode, setCheatMode] = useState(false); 
 
 const nextQuestion = () => {
     if (questionCount < questions.length-1){
@@ -54,7 +55,7 @@ console.log(obj.name);
     if (isCorrect === "true") {
         setMarkedAnswer(true);
         scoreCount();
-        setQuestionCount(questionCount +1)
+        setQuestionCount(questionCount +1);
     }else{
         setMarkedAnswer(false);
         setQuestionCount(questionCount +1)
@@ -67,6 +68,17 @@ const scoreCount = () =>{
 
 const cheaterMode = () => {
     setCheaterModeToggle(!cheaterModeToggle);
+    markCorrect();
+}
+
+const markCorrect = () =>{
+    
+    const correctKey = Object.keys(correctAnswers[questionCount]).find(key => correctAnswers[questionCount][key] === "true");
+
+    if (correctKey){
+        setCheatMode(!cheatMode);
+    }
+
 }
 
 const newQuiz = () =>{
@@ -128,6 +140,7 @@ useEffect(() =>{
             categories, setCategories,
             loading, difficulty,
             score, markedAnswer,
+            cheatMode,
             cheaterModeToggle, setCheaterModeToggle,
             nextQuestion,
             changeCategory,

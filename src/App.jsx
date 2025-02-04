@@ -13,7 +13,7 @@ function QuizContent() {
   const { cheaterModeToggle } = useContext(QuizContext);
 
   return (
-    <div className={cheaterModeToggle ? "container-cheater-mode" : "quiz-container"}>
+    <div className={cheaterModeToggle ? "quiz-container container-cheater-mode" : "quiz-container"}>
       <QuizHeader />
       <QuestionContainer />
       <AnswersContainer />
